@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>로또추첨기</title>
+  <style>
+    .ball {
+      display: inline-block;
+      border: 1px solid black;
+      border-radius: 20px;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      font-size: 20px;
+      text-align: center;
+      margin-right: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="result">추첨 결과는?</div>
+  <div id="bonus">보너스: </div>
+  <script>
+    const candidate = Array(45).fill().map((v, i) => i + 1); // 매번 랜덤으로 하나씩(숫자 야구게임 방식) 총 7개를 뽑는게 아니라 45개를 랜덤으로 섞은 뒤 앞에서(혹은 뒤에서) 7개 꺼내는 방식. 즉, 전부 다 랜덤으로 섞냐, 뽑는 값 일부만 랜덤으로 섞냐에 따라서 알고리즘이 달라짐
+    const shuffle = [];
+    while (candidate.length > 0) {
+      const random = Math.floor(Math.random() * candidate.length); // 무작위 인덱스 뽑기
+      const spliceArray = candidate.splice(random, 1); // 뽑은 값은 배열에 들어있음. splice의 return 값이 배열이 되기 때문에 가능
+      const value = spliceArray[0]; // spliceArray 배열에 들어 있는 값을 꺼내어(45개부터 하니씩 splice돼서 44, 43, 42 ... 1의 순서로 감)
+      shuffle.push(value); // shuffle 배열에 넣기
+    }
+    console.log(shuffle)
+  </script>  
+</body>
+</html>
