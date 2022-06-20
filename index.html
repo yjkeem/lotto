@@ -31,6 +31,10 @@
       shuffle.push(value); // shuffle 배열에 넣기
     }
     console.log(shuffle)
+
+    const winBalls = shuffle.splice(0, 6).sort((a, b) => a - b); // 공을 작은 순서부터 차례대로 정렬하기 위해 sort 사용
+    const bonus = shuffle[6];
+    console.log(winBalls, bonus)
   </script>  
 </body>
 </html>
