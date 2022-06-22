@@ -12,12 +12,28 @@ const candidate = Array(45).fill().map((v, i) => i + 1); // 매번 랜덤으로 
     const bonus = shuffle[6];
     console.log(winBalls, bonus);
 
+    function colorize(number, $tag) {
+      if (number < 10) {
+        $tag.style.backgroundColor = '#8CABD9';
+      } else if (number < 20) {
+        $tag.style.backgroundColor = '#F6A7B8';
+      } else if (number < 30) {
+        $tag.style.backgroundColor = '#F1EC7A';
+      } else if (number < 40) {
+        $tag.style.backgroundColor = '#1D4D9F';
+        $tag.style.color = 'white';
+      } else {
+        $tag.style.backgroundColor = '#F08838';
+      }
+    }
+
     const $result = document.querySelector('#result');
     const $bonus = document.querySelector('#bonus');
 
     const showBall = (number, $target) => {
       const $ball = document.createElement('div');
       $ball.className = 'ball';
+      colorize(number, $ball); // 매개변수로 넣어질 숫자 number(winBalls[i]임)와 태그인 $ball을 넣고 함수 호출. 물론 여기에 함수 그대로 적어도 되지만 따로 분리해 주는 것이 colorize 함수 이름을 통해 추측도 되고 보기에 좋음
       $ball.textContent = number;
       $target.appendChild($ball);
     }
@@ -31,3 +47,9 @@ const candidate = Array(45).fill().map((v, i) => i + 1); // 매번 랜덤으로 
     setTimeout(() => {
       showBall(bonus, $bonus);
     }, 7000);
+
+
+
+
+    
+  
